@@ -12,6 +12,7 @@
   var STORE_KEY = 'fl-review-v1';
   var WA_MAX = 4000;   // longest pre-filled WhatsApp text (URL-encoded) before switching to copy and paste
   var MAIL_MAX = 1800; // the same for email, where some mail apps cut long links short
+  var PART_CHARS = 2500; // WhatsApp cut a 4,096-character paste short (round 1), so long notes go in parts this size
 
   if (typeof TREATMENTS === 'undefined' || typeof HTMLDialogElement !== 'function') return;
 
@@ -46,7 +47,6 @@
   if (!page) return;
 
   /* ---------- sections that still need Michelle's OK ---------- */
-  var HOURS = 'Please add your opening hours here. They show as TBC for now.';
   var sections = [];
 
   function sectionOf(sel) {
@@ -75,18 +75,18 @@
       var t = TREATMENTS[i];
       if (t) add('card-' + t.slug, 'Treatment card: ' + t.name, card, {
         mount: card.querySelector('.svc-content'),
-        hint: t.tbc ? 'Should Facial Wax & Tint be on the website as a full treatment with its own page? A yes or no is all I need.' : ''
+        hint: ''
       });
     });
     add('homecare', 'Homecare products', sectionOf('#featured'), {
-      hint: 'The products here are examples until I have your list. Your picks go on the Shop Homecare page.'
+      hint: ''
     });
     add('salon-photos', 'Inside the salon', sectionOf('.home-gallery'), {
       hint: 'These 4 spots are for photos of the salon. Tell me which photos you want here, or if you would rather leave this section out.'
     });
     var newFaq = find(document.querySelectorAll('.faq-item'), function (el) { return /buy Lamelle/i.test(el.textContent); });
-    add('faq-lamelle', 'New question: Can I buy Lamelle products through you?', newFaq, { mount: newFaq });
-    add('contact', 'Contact details', document.querySelector('.cta'), { hint: HOURS });
+    add('faq-lamelle', 'New question: Where can I buy Lamelle products?', newFaq, { mount: newFaq });
+    add('contact', 'Contact details', document.querySelector('.cta'), {});
   }
 
   if (treatment) {
@@ -94,8 +94,7 @@
     var crumbs = hero && hero.querySelector('.crumbs');
     add('top', 'Top of the page', hero, {
       before: crumbs && crumbs.nextSibling,
-      hint: 'Please also add how long the treatment takes, the downtime and the starting price. They show as TBC for now.' +
-        (treatment.tbc ? ' And should Facial Wax & Tint be a full page on the website? A yes or no is all I need.' : '')
+      hint: treatment.facts ? '' : 'Please also add how long the treatment takes, the downtime and the starting price. They show as TBC for now.'
     });
     add('how', 'How it works & Good for', sectionOf('.split'));
     add('benefits', 'Benefits', sectionOf('.ben-grid'));
@@ -109,7 +108,7 @@
     });
     add('faq', 'Questions (FAQ)', sectionOf('.faq-list'), { hint: 'Want to add a question? Type the question and your answer.' });
     add('other', 'Other treatments', sectionOf('.other'), { hint: 'The short line under each treatment name is new too.' });
-    add('booking', 'Booking section', document.querySelector('.cta'), { hint: HOURS });
+    add('booking', 'Booking section', document.querySelector('.cta'), {});
   }
 
   if (type === 'shop') {
@@ -121,7 +120,7 @@
       hint: 'These 12 products are examples. I need your 10 to 15 Lamelle picks, with the Skin Confidence link for each one. Add them here or send them to me on WhatsApp.'
     });
     add('no-pressure', '"You don\'t have to use Lamelle" section', sectionOf('.phil'));
-    add('help', '"Not sure where to start?" section', document.querySelector('.cta'), { hint: HOURS });
+    add('help', '"Not sure where to start?" section', document.querySelector('.cta'), {});
   }
 
   add('footer', 'Menu & footer', document.querySelector('.site-footer'), {
@@ -250,6 +249,12 @@
     '.rv-send a{flex:1 1 190px}',
     '.rv-paste{font-size:12.5px;line-height:1.55;color:#5A4510;background:#FFF8DC;border-radius:12px;padding:10px 14px}',
     '.rv-small{font-size:12px;line-height:1.55;color:var(--muted)}',
+    '.rv-parts[hidden]{display:none}',
+    '.rv-partlist{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}',
+    '.rv-part{width:100%;flex-direction:column;gap:3px;padding:12px 20px}',
+    '.rv-part small{font-size:12px;font-weight:400;opacity:.8}',
+    '.rv-part.sent{background:var(--sage-soft);border-color:var(--sage);color:var(--forest)}',
+    '.rv-part.sent:hover{color:var(--forest)}',
     '.rv-warn{font-size:13px;color:#8a3b25;background:#fbe9e4;border-radius:12px;padding:10px 14px}',
     '.rv-steps{margin:0;padding-left:20px;font-size:14px;line-height:1.55;color:#4a4a42;display:flex;flex-direction:column;gap:6px}',
     '.rv-sign{font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;font-weight:600;color:var(--forest)}',
@@ -402,8 +407,9 @@
     '<ul class="rv-list rv-notes"></ul>' +
     '<p class="rv-empty">No notes yet. Happy with everything? Send that to me and I\'ll take it as your go-ahead.</p>' +
     '<h3 class="rv-h3"><span>Send to ' + h(SEND_TO.name) + '</span></h3>' +
+    '<div class="rv-parts" hidden><p class="rv-paste">Your notes are too long for one WhatsApp message, so they are split into <b class="rv-nparts"></b> parts. Tap Part 1, press send in WhatsApp, then come back here for the next one. Each part ticks off once you have sent it.</p><ol class="rv-partlist"></ol></div>' +
     '<div class="rv-send"><a class="rv-primary rv-wa" target="_blank" rel="noopener">Send on WhatsApp</a><a class="rv-secondary rv-mail">Send by email</a></div>' +
-    '<p class="rv-paste" hidden>Long notes are copied for you instead of typed in. If the message is empty when WhatsApp or your email opens, tap and hold in the message box and choose Paste.</p>' +
+    '<p class="rv-paste rv-mailhint" hidden>Long notes are copied for you instead of typed in. If the message is empty when WhatsApp or your email opens, tap and hold in the message box and choose Paste.</p>' +
     '<div class="rv-under"><button type="button" class="rv-link rv-copy">Copy my notes</button><button type="button" class="rv-link rv-reset">Delete all my notes</button></div>' +
     '<p class="rv-small">Your notes are saved on this phone or computer until you send them. Notes made on another device won\'t show here.</p>',
     'rv-panel-title');
@@ -428,6 +434,51 @@
     out.push('', 'Pages opened: ' + (PAGES.length - unopened.length) + ' of ' + PAGES.length +
       (unopened.length ? ' (not opened yet: ' + unopened.map(function (p) { return p.title; }).join(', ') + ')' : ''));
     return out.join('\n');
+  }
+
+  /* Long notes: split into WhatsApp-sized parts, cutting between notes (or inside a very long note, between lines). */
+  function fits(str) { return str.length <= PART_CHARS && encodeURIComponent(str).length <= WA_MAX - 300; }
+  function chunks(text) {
+    if (fits(text)) return [text];
+    var out = [], cur = '';
+    text.split('\n').forEach(function (line) {
+      while (!fits(line)) { var cut = line.lastIndexOf(' ', 1500); cut = cut > 0 ? cut : 1500; out.push(cur ? cur + '\n' + line.slice(0, cut) : line.slice(0, cut)); cur = ''; line = line.slice(cut).trim(); }
+      var next = cur ? cur + '\n' + line : line;
+      if (fits(next)) cur = next; else { out.push(cur); cur = line; }
+    });
+    if (cur) out.push(cur);
+    return out;
+  }
+  function parts(st, notes) {
+    var full = message(st, notes);
+    if (fits(full)) return null;
+    var blocks = [];
+    notes.forEach(function (n) {
+      chunks(n.text.trim()).forEach(function (piece, i, all) {
+        blocks.push({ page: n.page, pageTitle: n.pageTitle, text: '*' + n.label + (all.length > 1 ? ' (' + (i + 1) + ' of ' + all.length + ')' : '') + '*\n' + piece });
+      });
+    });
+    var groups = [], cur = null;
+    blocks.forEach(function (b) {
+      var head = '*' + b.pageTitle.toUpperCase() + '*';
+      if (cur) {
+        var add = (cur.last === b.page ? '' : '\n\n' + head) + '\n\n' + b.text;
+        if (fits(cur.body + add + '\n\n' + 'Hi ' + SEND_TO.name + ', my notes on the new website, part 10 of 10.')) {
+          cur.body += add; cur.last = b.page; if (cur.pages.indexOf(b.pageTitle) < 0) cur.pages.push(b.pageTitle); return;
+        }
+      }
+      cur = { body: head + (cur && cur.last === b.page ? ' (continued)' : '') + '\n\n' + b.text, last: b.page, pages: [b.pageTitle] };
+      groups.push(cur);
+    });
+    var tail = full.slice(full.lastIndexOf('\n\nPages opened:'));
+    return groups.map(function (g, i) {
+      var last = i === groups.length - 1;
+      return {
+        pages: g.pages,
+        text: 'Hi ' + SEND_TO.name + ', my notes on the new website, part ' + (i + 1) + ' of ' + groups.length + '.\n\n' + g.body +
+          (last ? '\n\nEverything without a note is fine as it is.' + tail : '\n\n(More in part ' + (i + 2) + ')')
+      };
+    });
   }
 
   function renderPanel(st) {
@@ -459,7 +510,23 @@
     waLink.href = 'https://wa.me/' + SEND_TO.whatsapp + (outgoing.waCopy ? '' : '?text=' + enc);
     mailLink.href = 'mailto:' + SEND_TO.email + '?subject=' + encodeURIComponent('Fine Lines website: my notes') +
       '&body=' + (outgoing.mailCopy ? encodeURIComponent('(Paste your notes here)') : enc);
-    panel.querySelector('.rv-paste').hidden = !outgoing.mailCopy;
+    panel.querySelector('.rv-mailhint').hidden = !outgoing.mailCopy;
+
+    var split = parts(st, notes);
+    var sent = st.sentParts || {};
+    panel.querySelector('.rv-parts').hidden = !split;
+    waLink.hidden = !!split;
+    waLink.style.display = split ? 'none' : '';
+    if (split) {
+      panel.querySelector('.rv-nparts').textContent = split.length;
+      panel.querySelector('.rv-partlist').innerHTML = split.map(function (p, i) {
+        var done = !!sent[p.text];
+        return '<li><a class="rv-primary rv-part' + (done ? ' sent' : '') + '" target="_blank" rel="noopener" data-i="' + i + '" href="https://wa.me/' + SEND_TO.whatsapp + '?text=' + encodeURIComponent(p.text) + '">' +
+          (done ? ICON_DONE + ' Part ' + (i + 1) + ' of ' + split.length + ' sent' : 'Send part ' + (i + 1) + ' of ' + split.length) +
+          '<small>' + h(p.pages.join(', ')) + '</small></a></li>';
+      }).join('');
+    }
+    outgoing.parts = split;
   }
 
   function legacyCopy(str) {
@@ -481,6 +548,13 @@
     return Promise.resolve(legacyCopy(str));
   }
 
+  panel.querySelector('.rv-partlist').addEventListener('click', function (e) {
+    var a = e.target.closest('.rv-part');
+    if (!a || !outgoing.parts) return;
+    var part = outgoing.parts[+a.getAttribute('data-i')];
+    // tick it off after WhatsApp has had a moment to open
+    setTimeout(function () { renderPanel(update(function (st) { st.sentParts = st.sentParts || {}; st.sentParts[part.text] = 1; st.sentAt = Date.now(); })); }, 400);
+  });
   waLink.addEventListener('click', function () {
     if (outgoing.waCopy) copyText(outgoing.text);
     update(function (st) { st.sentAt = Date.now(); });

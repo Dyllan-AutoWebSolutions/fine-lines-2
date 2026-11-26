@@ -25,13 +25,16 @@ var TREATMENTS = [
       { src: 'images/services/microneedling-1.jpg', alt: 'Close-up of the microneedling pen on a client\'s forehead' },
       { src: 'images/services/microneedling-2.jpg', alt: 'Michelle preparing the microneedling pen before a treatment', pos: '60% 50%' },
       { src: 'images/services/microneedling-3.jpg', alt: 'Michelle microneedling a smiling client\'s forehead', pos: '62% 50%' },
-      { src: 'images/services/microneedling-4.jpg', alt: 'Michelle massaging a client\'s face during a microneedling treatment', pos: '50% 58%' }
+      { src: 'images/services/microneedling-led.jpg', alt: 'Client relaxing under the red LED light therapy mask after microneedling', pos: '50% 50%' }
     ],
+    facts: { duration: '1 Hour', downtime: '3 &ndash; 5 days', from: 'R550 &ndash; R700' },
     lead: 'Microneedling uses small needles to create micro-channels in the skin, triggering your skin\'s natural healing response so it rebuilds smoother, firmer and more even.',
     what: [
-      'Microneedling (also called collagen induction therapy) creates thousands of controlled micro-channels in the skin. Your skin responds by producing new collagen and elastin, the proteins that keep it firm, smooth and resilient.',
-      'Those same channels let the serums applied during your treatment absorb far deeper than they could on their own, so the treatment works on two levels at once.'
+      'Microneedling is a skin rejuvenation treatment that uses very fine, sterile needles to create controlled micro-injuries in the skin.',
+      'This stimulates the skin\'s natural healing process and encourages the production of collagen and elastin, helping to improve skin texture, firmness and overall appearance.'
     ],
+    benefitsTitle: 'Benefits',
+    benefitsIntro: 'Microneedling works by stimulating your skin\'s natural renewal process. Over time, you can expect improvements in:',
     goodFor: ['Fine lines & wrinkles', 'Acne scarring', 'Enlarged pores', 'Uneven texture', 'Dull, tired skin', 'Mild pigmentation'],
     notFor: 'Not suitable during active breakouts, on broken or infected skin, or during pregnancy. Michelle will check this with you first.',
     benefits: [
@@ -43,11 +46,13 @@ var TREATMENTS = [
       ['Suits most skin types', 'Treatment depth is adjusted to your skin and your concern.']
     ],
     steps: [
-      ['Consultation', 'We look at your skin, your concerns and your history, and agree on a plan.'],
-      ['Preparation', 'Skin is cleansed and prepped so it is ready for treatment.'],
-      ['Treatment', 'The microneedling pen is passed over the skin with a treatment serum.'],
-      ['Aftercare', 'A calming mask and SPF, plus your homecare plan for the days that follow.']
+      ['Skin Consultation', 'We begin by discussing your skin concerns, goals and treatment history to ensure microneedling is suitable for your skin.'],
+      ['Skin Preparation', 'Your skin is thoroughly cleansed and prepared for treatment.'],
+      ['Microneedling Treatment', 'A professional microneedling device is used to create controlled micro-channels in the skin, stimulating its natural collagen and elastin production.'],
+      ['Soothing & LED Light Therapy', 'After microneedling, soothing and hydrating skincare is applied to comfort and support the skin. We then incorporate LED Light Therapy to help calm the skin and support the post-treatment recovery process.'],
+      ['Aftercare Guidance', 'We explain how to care for your skin at home, which products to avoid and what to expect during recovery.']
     ],
+    products: ['Serra Restore Cream', 'Restorative Balm', 'Barrier Repair Cream', 'RFM Stem Cell Serum'],
     aftercare: [
       'Expect redness, similar to mild sunburn, for 24 to 48 hours.',
       'No make-up for 24 hours, and avoid the gym, sauna and swimming for 48 hours.',
@@ -56,8 +61,9 @@ var TREATMENTS = [
     ],
     concerns: ['Anti-ageing', 'Acne'],
     faq: [
-      ['Does microneedling hurt?', 'Most clients describe it as a light scratching or vibrating feeling. Depth is adjusted to your comfort.'],
-      ['How many sessions will I need?', 'Most concerns respond best to a course of treatments spaced a few weeks apart. Michelle will advise a plan for your skin.']
+      ['Does microneedling hurt?', 'Most clients experience mild discomfort rather than pain. You may feel a slight prickling or vibrating sensation during the treatment. The needle depth is adjusted according to your skin\'s needs and comfort level.'],
+      ['How many sessions will I need?', 'The number of sessions depends on your individual skin concerns and goals. A course of 3&ndash;6 treatments is often recommended, with sessions spaced approximately 4&ndash;6 weeks apart. Your personalised treatment plan will be discussed during your consultation.'],
+      ['When will I see results?', 'Some improvements in skin texture may become noticeable within the first few weeks. Collagen production takes time, so results develop gradually over the following weeks and months.']
     ]
   },
   {
@@ -71,10 +77,11 @@ var TREATMENTS = [
       { src: 'images/services/chemical-peel-2.jpg', alt: 'Peel solution ready on the fan brush during a chemical peel', pos: '50% 38%' },
       { src: 'images/services/chemical-peel-3.jpg', alt: 'Neck and shoulder massage to finish a chemical peel treatment', pos: '50% 45%' }
     ],
+    facts: { duration: '30 min &ndash; 1 Hour', downtime: '24 Hours', from: 'R390 &ndash; R500' },
     lead: 'A chemical peel gently exfoliates the skin for a smoother, brighter, more even complexion, targeting pigmentation, texture and breakouts.',
     what: [
-      'A professional peel uses a carefully selected acid solution to loosen the bond between dead skin cells, so they shed and reveal fresher, more even skin underneath.',
-      'Peels are chosen and layered for your skin and your concern, from a gentle brightening peel to a deeper corrective peel for pigmentation or acne.'
+      'A chemical peel is a skin-renewing treatment that uses carefully selected exfoliating acids to remove dead skin cells from the surface of the skin and encourage natural skin renewal.',
+      'By promoting cell turnover, chemical peels help reveal fresher, smoother and brighter-looking skin while improving the appearance of uneven skin tone, pigmentation, fine lines and blemishes.'
     ],
     goodFor: ['Pigmentation', 'Uneven skin tone', 'Breakouts & congestion', 'Rough texture', 'Dull skin', 'Early signs of ageing'],
     notFor: 'Not suitable on sunburnt or broken skin, or if you are using certain prescription skin medication. Michelle will check this with you first.',
@@ -196,8 +203,12 @@ var TREATMENTS = [
     slug: 'facial-wax-tint',
     name: 'Facial Wax & Tint',
     short: 'Defined brows and lashes, smooth skin',
-    tbc: true,
     img: null,
+    card: {
+      name: 'Facial Waxes &amp; Tints',
+      lead: 'Eyebrow, lip and chin wax.<br />Eyebrow and eyelash tint.',
+      bullets: ['Consistent waxing over time can make regrowth feel finer or softer.', 'Reduces the need for daily brow pencils, gels, or mascara.']
+    },
     lead: 'Brow shaping, facial waxing and lash or brow tinting for a polished, low-maintenance look.',
     what: [
       'Facial waxing removes unwanted hair from the brows, lip and chin for smooth skin that lasts for weeks.',
@@ -232,20 +243,31 @@ var TREATMENTS = [
 ];
 
 /* ---------- products (sample line-up: swap for Michelle's picks + product links) ---------- */
+/* Michelle's own picks (review round 1) come first; the rest are still samples. */
 var PRODUCTS = [
-  { range: 'Lamelle Clarity', name: 'Clarity Cleansing Gel', desc: 'A foaming gel cleanser for oily and breakout-prone skin.', step: 'Cleanse', concerns: ['Acne'], best: true },
+  { range: 'Lamelle Correctives', name: 'Corrective Vita C Lipid Serum', desc: 'A vitamin C serum that brightens dull skin and helps protect it from daily environmental stress.', step: 'Treat', concerns: ['Pigmentation', 'Anti-ageing'], best: true },
+  { range: 'Lamelle Serra', name: 'Serra Restore Cream', desc: 'A soothing cream that calms and restores sensitive or freshly treated skin.', step: 'Hydrate', concerns: ['Sensitive', 'Hydration'], best: true },
+  { range: 'Lamelle Clarity', name: 'Clarity Active Cleanse', desc: 'A cleanser for oily and breakout-prone skin that helps keep pores clear.', step: 'Cleanse', concerns: ['Acne'], best: true },
+  { range: 'Lamelle Helase', name: 'Helase 50 Sun Cream', desc: 'Daily SPF 50 protection. The one product every skin needs.', step: 'Protect', concerns: ['Pigmentation', 'Anti-ageing', 'Acne', 'Sensitive', 'Hydration'], best: true },
+  { range: 'Lamelle', name: 'Restorative Balm', desc: 'A rich balm that comforts and protects the skin while it recovers after a treatment.', step: 'Hydrate', concerns: ['Sensitive'] },
+  { range: 'Lamelle Dermaheal', name: 'Barrier Repair Cream', desc: 'Soothes and restores the skin barrier after treatments.', step: 'Hydrate', concerns: ['Sensitive', 'Hydration'] },
+  { range: 'Lamelle', name: 'RFM Stem Cell Serum', desc: 'A serum that supports skin repair and renewal between treatments.', step: 'Treat', concerns: ['Anti-ageing'] },
   { range: 'Lamelle Clarity', name: 'Clarity Active Serum', desc: 'A targeted serum to calm breakouts and keep pores clear.', step: 'Treat', concerns: ['Acne'] },
   { range: 'Lamelle Clarity', name: 'Clarity Oil-Free Moisturiser', desc: 'Lightweight hydration that won\'t clog pores.', step: 'Hydrate', concerns: ['Acne'] },
   { range: 'Lamelle Brightening', name: 'Brightening Cleanser', desc: 'A gentle cleanser for skin prone to pigmentation.', step: 'Cleanse', concerns: ['Pigmentation'] },
-  { range: 'Lamelle Brightening', name: 'Brightening Serum', desc: 'Targets uneven tone and dark spots for a brighter complexion.', step: 'Treat', concerns: ['Pigmentation'], best: true },
+  { range: 'Lamelle Brightening', name: 'Brightening Serum', desc: 'Targets uneven tone and dark spots for a brighter complexion.', step: 'Treat', concerns: ['Pigmentation'] },
   { range: 'Lamelle Brightening', name: 'Brightening Night Cream', desc: 'Works overnight to even out skin tone.', step: 'Hydrate', concerns: ['Pigmentation'] },
-  { range: 'Lamelle Ollin', name: 'Ollin Firming Serum', desc: 'Supports firmness and softens the look of fine lines.', step: 'Treat', concerns: ['Anti-ageing'], best: true },
+  { range: 'Lamelle Ollin', name: 'Ollin Firming Serum', desc: 'Supports firmness and softens the look of fine lines.', step: 'Treat', concerns: ['Anti-ageing'] },
   { range: 'Lamelle Ollin', name: 'Ollin Day Cream', desc: 'A rich daily moisturiser for mature skin.', step: 'Hydrate', concerns: ['Anti-ageing', 'Hydration'] },
   { range: 'Lamelle Ollin', name: 'Ollin Eye Cream', desc: 'Hydrates and smooths the delicate eye area.', step: 'Treat', concerns: ['Anti-ageing'] },
-  { range: 'Lamelle Dermaheal', name: 'Dermaheal Barrier Repair Cream', desc: 'Soothes and restores skin after treatments.', step: 'Hydrate', concerns: ['Sensitive', 'Hydration'], best: true },
   { range: 'Lamelle Serra', name: 'Serra Calming Cleanser', desc: 'A soft, non-foaming cleanser for sensitive skin.', step: 'Cleanse', concerns: ['Sensitive'] },
-  { range: 'Lamelle Sun', name: 'Daily Sun Protection SPF 50', desc: 'Lightweight daily SPF. The one product every skin needs.', step: 'Protect', concerns: ['Pigmentation', 'Anti-ageing', 'Acne', 'Sensitive', 'Hydration'], best: true }
 ];
+
+var HOME_PICKS = ['Corrective Vita C Lipid Serum', 'Serra Restore Cream', 'Clarity Active Cleanse', 'Helase 50 Sun Cream'];
+
+function byName(names) {
+  return names.map(function (n) { return PRODUCTS.filter(function (p) { return p.name === n; })[0]; }).filter(Boolean);
+}
 
 var BOTTLES = {
   Cleanse: '<rect x="44" y="18" width="12" height="10" rx="2"/><path d="M38 34c0-4 3-6 6-6h12c3 0 6 2 6 6v52c0 4-3 6-6 6H44c-3 0-6-2-6-6Z"/>',
@@ -291,7 +313,7 @@ function cta(title, text) {
     '<a class="btn btn-secondary" style="border-color:rgba(255,255,255,0.5);color:#fff" href="https://www.facebook.com/finelinesaestheticsalon" target="_blank" rel="noopener">Visit Our Facebook</a></div>' +
     '<div class="cta-details"><div class="item"><div class="k">WhatsApp / Phone</div><div class="v"><a href="tel:+27712562703">071 256 2703</a></div></div>' +
     '<div class="item"><div class="k">Address</div><div class="v">18 Durban Street, Paglande, Worcester</div></div>' +
-    '<div class="item"><div class="k">Hours</div><div class="v">' + TBC + '</div></div></div></div></div>';
+    '<div class="item"><div class="k">Hours</div><div class="v">Mon &ndash; Fri 08:00 &ndash; 18:00<br />Sat 09:00 &ndash; 14:00</div></div></div></div></div>';
 }
 
 function footer() {
@@ -335,10 +357,12 @@ function renderTreatment(el) {
   var t = TREATMENTS.filter(function (x) { return x.slug === slug; })[0] || TREATMENTS[0];
   document.title = t.name + ' in Worcester | Fine Lines Aesthetic Salon';
 
-  var paired = PRODUCTS.filter(function (p) {
+  var paired = t.products ? byName(t.products) : PRODUCTS.filter(function (p) {
     return p.concerns.some(function (c) { return t.concerns.indexOf(c) > -1; });
   }).sort(function (a, b) { return (b.best ? 1 : 0) - (a.best ? 1 : 0); }).slice(0, 3);
   if (t.concerns[0] === 'Body') paired = [];
+  var f = t.facts || {};
+  var fact = function (k, v) { return '<div class="fact"><div class="k">' + k + '</div><div class="v">' + v + '</div></div>'; };
 
   var pos = function (p) { return p.pos ? ' style="object-position:' + p.pos + '"' : ''; };
   var heroImg = t.hero ? '<img src="' + t.hero.src + '" width="900" height="1125" fetchpriority="high" alt="' + esc(t.hero.alt) + '"' + pos(t.hero) + ' />'
@@ -356,12 +380,10 @@ function renderTreatment(el) {
       (t.tbc ? note('Page only goes live once Michelle confirms Facial Wax &amp; Tint as a full service. Copy below is a draft.') : '') +
       '<div class="ph-grid"><div>' +
         '<div class="eyebrow">Treatment</div><h1>' + t.name + '</h1><p class="lead">' + t.lead + '</p>' +
-        '<div class="facts"><div class="fact"><div class="k">Duration</div><div class="v">' + TBC + '</div></div>' +
-        '<div class="fact"><div class="k">Downtime</div><div class="v">' + TBC + '</div></div>' +
-        '<div class="fact"><div class="k">From</div><div class="v">R ' + TBC + '</div></div></div>' +
+        '<div class="facts">' + fact('Duration', f.duration || TBC) + fact('Downtime', f.downtime || TBC) + fact('From', f.from || 'R ' + TBC) + '</div>' +
         '<div class="hero-actions"><a class="btn btn-primary" data-book href="' + BOOK_HREF + '" target="_blank" rel="noopener">Book this treatment</a>' +
         '<a class="btn btn-secondary" href="' + wa('Hi there,\nI am interested in ' + t.name + ', can you tell me more.') + '" target="_blank" rel="noopener">Ask Michelle a question</a></div>' +
-        note('Michelle to supply duration, downtime and starting price per treatment. Prices also go into Google\'s salon listing data.') +
+        (t.facts ? '' : note('Michelle to supply duration, downtime and starting price per treatment. Prices also go into Google\'s salon listing data.')) +
       '</div><div class="ph-media">' + heroImg + '</div></div>' +
     '</div></div>' +
 
@@ -370,11 +392,14 @@ function renderTreatment(el) {
       '<div class="good-for"><h3>Good for</h3><div class="chips">' + t.goodFor.map(function (g) { return '<span class="chip">' + g + '</span>'; }).join('') + '</div>' +
       '<p class="not-for">' + t.notFor + '</p></div></div></div></section>' +
 
-    '<section style="background:var(--cream)"><div class="wrap"><div class="section-head"><div class="eyebrow">Benefits</div><h2 class="section-title">What you can expect from ' + t.name.replace('Gel / Cutex ', 'a ') + '</h2></div>' +
+    '<section style="background:var(--cream)"><div class="wrap"><div class="section-head">' + (t.benefitsTitle
+        ? '<div class="eyebrow">What to expect</div><h2 class="section-title">' + t.benefitsTitle + '</h2>'
+        : '<div class="eyebrow">Benefits</div><h2 class="section-title">What you can expect from ' + t.name.replace('Gel / Cutex ', 'a ') + '</h2>') +
+      (t.benefitsIntro ? '<p class="section-desc">' + t.benefitsIntro + '</p>' : '') + '</div>' +
       '<div class="ben-grid">' + t.benefits.map(function (b, i) { return '<div class="ben why-item"><div><div class="n">0' + (i + 1) + '</div><h3>' + b[0] + '</h3><p>' + b[1] + '</p></div></div>'; }).join('') + '</div></div></section>' +
 
     '<section><div class="wrap"><div class="section-head"><div class="eyebrow">Your appointment</div><h2 class="section-title">What happens on the day</h2></div>' +
-      '<div class="steps">' + t.steps.map(function (s) { return '<div class="step faq-item" style="border:none;padding-bottom:0"><h3>' + s[0] + '</h3><p>' + s[1] + '</p></div>'; }).join('') + '</div></div></section>' +
+      '<div class="steps' + (t.steps.length === 5 ? ' s5' : '') + '">' + t.steps.map(function (s) { return '<div class="step faq-item" style="border:none;padding-bottom:0"><h3>' + s[0] + '</h3><p>' + s[1] + '</p></div>'; }).join('') + '</div></div></section>' +
 
     '<section><div class="wrap"><div class="section-head"><div class="eyebrow">At the salon</div><h2 class="section-title">' + t.name + ' at Fine Lines</h2>' +
       note(t.gallery ? 'Photos from the salon shoot, picked by Michelle. Before/after shots can be added later, only with the client\'s written consent.'
@@ -384,7 +409,7 @@ function renderTreatment(el) {
     '<section style="background:var(--sage-soft)"><div class="wrap"><div class="after"><div><div class="eyebrow">Aftercare</div><h2 class="section-title" style="margin-bottom:26px">Looking after your skin afterwards</h2><ul>' +
       t.aftercare.map(function (a) { return '<li>' + a + '</li>'; }).join('') + '</ul>' + note('Aftercare points are a draft. Michelle to confirm against her own aftercare sheet.') + '</div>' +
       (paired.length
-        ? '<div><div class="pair-head"><h3>Homecare to pair with it</h3><a href="shop.html">View all products &rarr;</a></div><div class="prod-grid three">' + paired.map(productCard).join('') + '</div></div>'
+        ? '<div><div class="pair-head"><h3>Homecare to pair with it</h3><a href="shop.html">View all products &rarr;</a></div><div class="prod-grid ' + (paired.length === 4 ? 'two' : 'three') + '">' + paired.map(productCard).join('') + '</div></div>'
         : '<div class="good-for"><h3>Between appointments</h3><p style="font-size:14.5px;color:#4a4a42;margin:0 0 18px">Ask Michelle which homecare products will keep your results looking their best.</p><a class="btn btn-secondary btn-sm" href="shop.html">Browse homecare</a></div>') +
     '</div></div></section>' +
 
@@ -459,16 +484,17 @@ function renderHome() {
   if (svc) {
     svc.innerHTML = TREATMENTS.map(function (t, i) {
       var media = t.img ? '<img src="' + t.img + '" width="960" height="720" loading="lazy" alt="' + esc(t.name) + ' at Fine Lines Aesthetic Salon" />' : photo('Shoot photo', 'Brow / tint close-up');
-      var ben = t.benefits.slice(0, 3).map(function (b) { return '<li>' + b[0] + '</li>'; }).join('');
+      var c = t.card || {};
+      var ben = (c.bullets || t.benefits.slice(0, 3).map(function (b) { return b[0]; })).map(function (b) { return '<li>' + b + '</li>'; }).join('');
       return '<div class="svc-card' + (i % 2 ? ' reverse' : '') + '"><div class="svc-media">' + media + '</div><div class="svc-content">' +
-        '<h3 class="svc-name">' + t.name + '</h3>' + (t.tbc ? note('Shown only if Michelle confirms it as a full service.') : '') +
-        '<div class="svc-desc">' + t.lead + '</div><ul class="svc-benefits">' + ben + '</ul>' +
+        '<h3 class="svc-name">' + (c.name || t.name) + '</h3>' +
+        '<div class="svc-desc">' + (c.lead || t.lead) + '</div><ul class="svc-benefits">' + ben + '</ul>' +
         '<div class="svc-links"><a class="svc-link" href="treatment.html?t=' + t.slug + '">Read more about ' + t.name + ' &rarr;</a>' +
         '<a class="svc-more" href="' + wa('Hi there,\nI am interested in ' + t.name + ', can you tell me more.') + '" target="_blank" rel="noopener">or ask Michelle on WhatsApp</a></div></div></div>';
     }).join('');
   }
   var feat = document.getElementById('featured');
-  if (feat) feat.innerHTML = PRODUCTS.filter(function (p) { return p.best; }).slice(0, 4).map(productCard).join('');
+  if (feat) feat.innerHTML = byName(HOME_PICKS).map(productCard).join('');
   var homeCta = document.getElementById('home-cta');
   if (homeCta) homeCta.outerHTML = cta('Let\'s talk about your skin', 'The fastest way to book a treatment or ask a question is a WhatsApp message straight to Michelle.');
 }

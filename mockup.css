@@ -219,3 +219,9 @@ body.mk-clean .tbc{background:none;outline:none;padding:0;}
   .mk-bar{left:12px;bottom:10px;}
   .mk-toggle{padding:8px 14px;}
 }
+
+/* review round 1: 5-step days, 4 paired products */
+.steps.s5{grid-template-columns:repeat(5,minmax(0,1fr));}
+.prod-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media (max-width:1000px){ .steps.s5{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:32px;} }
+@media (max-width:760px){ .steps.s5{grid-template-columns:1fr;} .prod-grid.two{gap:12px;} }
